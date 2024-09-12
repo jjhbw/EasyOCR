@@ -2,30 +2,23 @@
 
 from .recognition import get_recognizer, get_text
 from .utils import group_text_box, get_image_list, calculate_md5, get_paragraph,\
-                   download_and_unzip, printProgressBar, diff, reformat_input,\
+                   download_and_unzip, diff, reformat_input,\
                    make_rotated_img_list, set_result_with_confidence,\
                    reformat_input_batched, merge_to_free
 from .config import *
 from bidi import get_display
-import numpy as np
-import cv2
 import torch
 import os
 import sys
-from PIL import Image
 from logging import getLogger
 import yaml
 import json
 
-if sys.version_info[0] == 2:
-    from io import open
-    from six.moves.urllib.request import urlretrieve
-    from pathlib2 import Path
-else:
-    from urllib.request import urlretrieve
-    from pathlib import Path
+from pathlib import Path
 
 LOGGER = getLogger(__name__)
+
+corrupt_msg = 'MD5 hash mismatch, possible file corruption'
 
 class Reader(object):
 
@@ -243,7 +236,6 @@ class Reader(object):
                 raise RuntimeError("Unsupport detector network. Support networks are craft and dbnet18.")
             self.get_textbox = get_textbox
             self.get_detector = get_detector
-            corrupt_msg = 'MD5 hash mismatch, possible file corruption'
             detector_path = os.path.join(self.model_storage_directory, self.detection_models[self.detect_network]['filename'])
             if os.path.isfile(detector_path) == False:
                 if not self.download_enabled:

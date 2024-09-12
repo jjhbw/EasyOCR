@@ -1,21 +1,16 @@
 from __future__ import print_function
 
 import torch
-import pickle
 import numpy as np
 import math
 import cv2
 from PIL import Image, JpegImagePlugin
 from scipy import ndimage
 import hashlib
-import sys, os
+import os
 from zipfile import ZipFile
 from .imgproc import loadImage
-
-if sys.version_info[0] == 2:
-    from six.moves.urllib.request import urlretrieve
-else:
-    from urllib.request import urlretrieve
+from urllib.request import urlretrieve
 
 def consecutive(data, mode ='first', stepsize=1):
     group = np.split(data, np.where(np.diff(data) != stepsize)[0]+1)
