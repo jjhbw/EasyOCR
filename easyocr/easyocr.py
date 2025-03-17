@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from torch.utils.viz._cycles import warn_tensor_cycles
 
 from .recognition import get_recognizer, get_text
 from .utils import group_text_box, get_image_list, calculate_md5, get_paragraph,\
@@ -15,6 +16,9 @@ import yaml
 import json
 
 from pathlib import Path
+
+warn_tensor_cycles()
+
 
 LOGGER = getLogger(__name__)
 
