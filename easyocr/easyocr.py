@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import logging
 from torch.utils.viz._cycles import warn_tensor_cycles
 
 from .recognition import get_recognizer, get_text
@@ -19,6 +20,8 @@ from pathlib import Path
 
 warn_tensor_cycles()
 
+
+torch._logging.set_logs(dynamo=logging.DEBUG, graph_code=True)
 
 LOGGER = getLogger(__name__)
 
