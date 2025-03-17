@@ -21,7 +21,7 @@ from pathlib import Path
 warn_tensor_cycles()
 
 
-torch._logging.set_logs(dynamo=logging.DEBUG, graph_code=True)
+torch._logging.set_logs(all=logging.DEBUG, graph_code=True)
 
 LOGGER = getLogger(__name__)
 
