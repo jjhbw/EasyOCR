@@ -328,7 +328,7 @@ def test_net(
         x = x.cuda()
 
     # forward pass
-    with torch.no_grad():
+    with torch.inference_mode():
         y, feature = net(x)
 
     # make score and link map

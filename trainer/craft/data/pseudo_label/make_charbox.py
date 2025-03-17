@@ -82,7 +82,7 @@ class PseudoCharBoxBuilder:
         if net.training:
             net.eval()
 
-        with torch.no_grad():
+        with torch.inference_mode():
             word_img_torch = torch.from_numpy(
                 imgproc.normalizeMeanVariance(
                     word_image,

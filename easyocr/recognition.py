@@ -99,7 +99,7 @@ def recognizer_predict(model, converter, test_loader, batch_max_length,\
                        ignore_idx, char_group_idx, decoder = 'greedy', beamWidth= 5, device = 'cpu'):
     model.eval()
     result = []
-    with torch.no_grad():
+    with torch.inference_mode():
         for image_tensors in test_loader:
             batch_size = image_tensors.size(0)
             image = image_tensors.to(device)

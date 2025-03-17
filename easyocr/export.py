@@ -34,7 +34,7 @@ def export_detector(detector_onnx_save_path,
         dummy_input = dummy_input.to(device)
 
         # forward pass
-        with torch.no_grad():
+        with torch.inference_mode():
             y_torch_out, feature_torch_out = ocr_reader.detector(dummy_input)
             torch.onnx.export(ocr_reader.detector,
                               dummy_input,

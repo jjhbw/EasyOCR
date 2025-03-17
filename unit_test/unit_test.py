@@ -84,7 +84,7 @@ class UnitTest:
         return sum([param.numel() for param in model.parameters()])
     
     def get_weight_norm(self, model):
-        with torch.no_grad():
+        with torch.inference_mode():
             return sum([param.norm() for param in model.parameters()]).cpu().item()
 
     def get_nested_attr(self, parent, attr):

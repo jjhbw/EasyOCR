@@ -76,7 +76,7 @@ def test_net(image,
     images = [np.transpose(detector.normalize_image(n_img), (2, 0, 1)) for n_img in images]
     image_tensor = torch.from_numpy(np.array(images)).to(device)
     # forward pass
-    with torch.no_grad():
+    with torch.inference_mode():
         hmap = detector.image2hmap(image_tensor.to(device))
         bboxes, _ = detector.hmap2bbox(
                             image_tensor, 

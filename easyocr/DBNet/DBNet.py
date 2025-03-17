@@ -749,7 +749,7 @@ class DBNet:
             image = [image]
 
         image_tensor, original_shapes = self.load_images(image, detection_size = detection_size)
-        with torch.no_grad():
+        with torch.inference_mode():
             hmap = self.image2hmap(image_tensor)
             batch_boxes, batch_scores = self.hmap2bbox(image_tensor, 
                                                        original_shapes,

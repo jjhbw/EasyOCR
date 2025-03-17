@@ -40,7 +40,7 @@ def test_net(canvas_size, mag_ratio, net, image, text_threshold, link_threshold,
     x = x.to(device)
 
     # forward pass
-    with torch.no_grad():
+    with torch.inference_mode():
         y, feature = net(x)
 
     # remove x and feature from device, whether GPU or CPU

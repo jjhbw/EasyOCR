@@ -228,7 +228,7 @@ def train(opt, show_number = 2, amp=False):
             # for log
             with open(f'./saved_models/{opt.experiment_name}/log_train.txt', 'a', encoding="utf8") as log:
                 model.eval()
-                with torch.no_grad():
+                with torch.inference_mode():
                     valid_loss, current_accuracy, current_norm_ED, preds, confidence_score, labels,\
                     infer_time, length_of_data = validation(model, criterion, valid_loader, converter, opt, device)
                 model.train()

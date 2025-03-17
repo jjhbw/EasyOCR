@@ -15,7 +15,7 @@ def count_parameters(model):
     return sum([param.numel() for param in model.parameters()])
 
 def get_weight_norm(model):
-    with torch.no_grad():
+    with torch.inference_mode():
         return sum([param.norm() for param in model.parameters()]).cpu().item()
     
 def replace(list_in, indices, values):
